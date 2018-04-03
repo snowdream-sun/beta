@@ -31,7 +31,7 @@ function generateInputCombi() {
 
 function displayDiagram() {
     if (USER_INPUT.diagram) {
-        document.getElementById("diagram").innerHTML = USER_INPUT.diagram;
+        document.getElementById("diagramSection").innerHTML = USER_INPUT.diagram;
     }
 }
 
