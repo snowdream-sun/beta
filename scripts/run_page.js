@@ -41,13 +41,15 @@ function changeInput() {
     var nextState = getNextState(curIn);
 
     if (curOut == "undefined") {
-        document.getElementById("curOut").innerHTML = "<mark title='By default'>" + "0".repeat(FSM._outputs.length) + "</mark>"; // default: assign all outputs to zero
+        document.getElementById("curOut").innerHTML = // default: assign all outputs to zero
+            "<mark title='By default'>" + "0".repeat(FSM._outputs.length) + "</mark>";
     } else {
         document.getElementById("curOut").innerHTML = curOut;
     }
 
     if (nextState == "undefined") {
-        document.getElementById("nextState").innerHTML = "<mark title='By default'>" + getCurState() + "</mark>"; // default: stay in current state
+        document.getElementById("nextState").innerHTML = // default: stay in current state
+            "<mark title='By default'>" + getCurState() + "</mark>";
     } else {
         document.getElementById("nextState").innerHTML = nextState;
     }
@@ -59,10 +61,11 @@ function updatePanel() {
 }
 
 function activeClkEdge() {
-    if (document.getElementById("curIn").value == "undefined") {
+    var curIn = document.getElementById("curIn").value;
+    if (curIn == "undefined") {
         return;
     }
-    updateCurState(document.getElementById("nextState").innerHTML);
+    updateCurState(getNextState(curIn));
     updatePanel();
 }
 
@@ -88,5 +91,3 @@ fillInSpecs();
 generateInputCombi();
 displayDiagram();
 updatePanel();
-
-console.log(document.getElementById("nextState").innerHTML);
