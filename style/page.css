@@ -75,3 +75,7 @@ button {
 pre {
     tab-size: 4; /* not compatible with IE and Edge */
 }
+
+mark {
+    background-color: #FFFF80;
+}
