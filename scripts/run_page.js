@@ -65,7 +65,11 @@ function activeClkEdge() {
     if (curIn == "undefined") {
         return;
     }
-    updateCurState(getNextState(curIn));
+    var nextState = getNextState(curIn);
+    if (nextState == "undefined") {
+        return;
+    }
+    updateCurState(nextState);
     updatePanel();
 }
 
