@@ -438,6 +438,12 @@ function submitForm3(type, outputT) {
 
   // draw diagram
   drawDiag(transitionT)
+
+//////////////////////// EDITED BY SUN /////////////////////////
+sessionStorage.setItem("userInput", JSON.stringify(USER_INPUT));
+sessionStorage.setItem("fsmName", "My own FSM!");
+window.open("../page.html");
+////////////////////////////////////////////////////////////////
 }
 
 // from template
