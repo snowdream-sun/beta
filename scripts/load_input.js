@@ -20,7 +20,7 @@ function loadEgIII() {
 }
 
 function toEnterInput() {
-    location = "https://lstevenll.github.io/";
+    location = "lstevenll/vsim.html";
 }
 
 // Events
