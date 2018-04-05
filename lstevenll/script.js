@@ -42,7 +42,7 @@ function updateTextArea(isInput) {
 
   selectedArea.empty()
   selectedArea.append(isInput ? $("<p>Input:</p>") : $("<p>Output:</p>"))
-  selectedArea.append($("<p>(format: words with not more than 10 letters (underscore and number can be used))</p>"))
+
 
   for (var i = 0; i < count; i++) {
     var id = isInput ? "inputTextArea" : "outputTextArea"
@@ -74,7 +74,7 @@ function submitForm1() {
     $("#validationError").text("Invalid output!")
     return
   } else if (!isUnique(inputs.concat(outputs))) {
-    $("#validationError").text("Inputs and outputs must be unique.")
+    $("#validationError").text("Every input and output must be unique!")
     return
   } else {
     $("#validationError").text("")
@@ -104,7 +104,7 @@ function isUnique(arr) {
 }
 
 function validateString(input) {
-  if (input.length === 0 || input.length > 10) {
+  if (input.length === 0 || input.length > 20) {
     return false
   }
   var regex = /^([a-zA-Z0-9_]+)$/
@@ -418,6 +418,7 @@ function submitForm3(type, outputT) {
   // data required by partner
   console.log("inputs: ")
   console.log(USER_INPUT.inputs)
+	
   console.log("outputs: ")
   console.log(USER_INPUT.outputs)
 
@@ -435,19 +436,63 @@ function submitForm3(type, outputT) {
 
   console.log("outputT: ")
   console.log(USER_INPUT.outputT)
-
-  // draw diagram
-  drawDiag(transitionT)
-
+	
+	
 //////////////////////// EDITED BY SUN /////////////////////////
 sessionStorage.setItem("userInput", JSON.stringify(USER_INPUT));
 sessionStorage.setItem("fsmName", "My own FSM!");
 window.open("../page.html");
 ////////////////////////////////////////////////////////////////
+
 }
 
-// from template
+function drawSTD0(){
+	  outputTable = []
+  for (var i = 0; i < stateTransitionTable.length; i++) {
+    var row = stateTransitionTable[i]
+    var state = getStateName(row[0].substring(1,2))
 
+    var inputString = ""
+    for (var j = 1; j < row.length - 1; j++) {
+      inputString += row[j]
+    }
+
+    var outputString = ""
+    for (var j = 0; j < outputCount; j++) {
+      var id = "mealy" + (i + 1) + "output" + (j + 1)
+      outputString += $("#" + id + " option:selected").text()
+    }
+
+    outputTable.push([state, inputString, outputString])
+  }
+
+  drawSTD1("Mealy", outputTable)
+	
+}
+
+function drawSTD1(type, outputT){
+	  var states = []
+  for (var i = 0; i < stateCount; i++) {
+    states.push($("#transitionStateName" + i).val())
+  }
+
+  var transitionT = []
+  for (var i = 0; i < stateTransitionTable.length; i++) {
+    var row = stateTransitionTable[i]
+    var formattedRow = []
+    formattedRow.push(getStateName(row[0].substring(1,2)))
+    var inputString = ""
+    for (var j = 1; j < row.length - 1; j++) {
+      inputString += row[j]
+    }
+    formattedRow.push(inputString)
+    formattedRow.push(getStateName(row[row.length - 1].substring(1,2)))
+    transitionT.push(formattedRow)
+  }
+  drawDiag(transitionT)
+}
+
+//draw diagram using GoJS
 function loadMagic() {
   var $ = go.GraphObject.make;  // for conciseness in defining templates
 
