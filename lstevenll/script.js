@@ -443,7 +443,6 @@ sessionStorage.setItem("userInput", JSON.stringify(USER_INPUT));
 sessionStorage.setItem("fsmName", "My own FSM!");
 window.open("../page.html");
 ////////////////////////////////////////////////////////////////
-
 }
 
 function drawSTD0(){
