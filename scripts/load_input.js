@@ -4,7 +4,8 @@
 function loadEgI() {
     sessionStorage.setItem("userInput", JSON.stringify(EG_MOORE_1));
     sessionStorage.setItem("fsmName", "Example: Moore #1");
-    location = "page.html";
+//     location = "page.html";
+    location.assign("page.html");
 }
 
 function loadEgII() {
